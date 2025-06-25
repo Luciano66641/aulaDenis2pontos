@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Viagens{% endblock %}
+
+{% block content %}
+<h2>Lista de Viagens</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Destino</th>
+      <th>Data de Partida</th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for viagem in viagens %}
+    <tr>
+      <td>{{ viagem.destino }}</td>
+      <td>{{ viagem.data_partida }}</td>
+      <td>R$ {{ viagem.preco }}</td>
+      <td>
+        <a href="{% url 'viagem_por_clientes' viagem.id %}" class="btn btn-sm btn-info">Ver Clientes</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'nova_viagem' %}" class="btn btn-primary">Nova Viagem</a>
+{% endblock %}

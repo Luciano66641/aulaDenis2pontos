@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Clientes da Viagem {{ viagem.destino }}{% endblock %}
+
+{% block content %}
+<h2>Clientes da Viagem: {{ viagem.destino }}</h2>
+
+{% if clientes %}
+  <ul class="list-group">
+    {% for cliente in clientes %}
+      <li class="list-group-item">
+        {{ cliente.nome }} - {{ cliente.cpf }} - {{ cliente.email }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Não há clientes nesta viagem.</p>
+{% endif %}
+
+<a href="{% url 'lista_viagens' %}" class="btn btn-secondary mt-3">Voltar</a>
+{% endblock %}
