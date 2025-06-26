@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Viagem
 from .forms import ViagemForm
+from clientes.models import Cliente  # Import necessário para acessar os clientes
 
 # Template 3: nova_viagem.html
 def nova_viagem(request):

@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
-
-{% block title %}Clientes da Viagem {{ viagem.destino }}{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<h2>Clientes da Viagem: {{ viagem.destino }}</h2>
+<h2>Viagens por Cliente</h2>
 
-{% if clientes %}
-  <ul class="list-group">
-    {% for cliente in clientes %}
-      <li class="list-group-item">
-        {{ cliente.nome }} - {{ cliente.cpf }} - {{ cliente.email }}
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>Não há clientes nesta viagem.</p>
-{% endif %}
+{% for cliente in clientes %}
+  <div>
+    <h4>{{ cliente.nome }}</h4>
+    <ul>
+      {% for viagem in cliente.viagem_set.all %}
+        <li>
+          Destino: {{ viagem.destino }} | Ida: {{ viagem.data_partida|date:"d/m/Y" }} | Preço: R$ {{ viagem.preco|floatformat:2 }}
+        </li>
+      {% empty %}
+        <li>Sem viagens cadastradas.</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <hr>
+{% endfor %}
 
-<a href="{% url 'lista_viagens' %}" class="btn btn-secondary mt-3">Voltar</a>
+<a href="{% url 'menu' %}" class="btn btn-secondary">Voltar ao Menu</a>
 {% endblock %}

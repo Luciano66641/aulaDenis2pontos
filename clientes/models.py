@@ -1,11 +1,10 @@
 from django.db import models
-from clientes.models import Cliente
 
-class Viagem(models.Model):
-    destino = models.CharField(max_length=100)
-    data_partida = models.DateField()
-    preco = models.DecimalField(max_digits=8, decimal_places=2)
-    clientes = models.ManyToManyField(Cliente)
+class Cliente(models.Model):
+    nome = models.CharField(max_length=100)
+    data_nascimento = models.DateField()
+    cpf = models.CharField(max_length=14, unique=True)
+    email = models.EmailField()
 
     def __str__(self):
-        return self.destino.title()  # Regra 8 - capitalização
+        return self.nome.title()

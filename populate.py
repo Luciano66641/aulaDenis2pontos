@@ -1,12 +1,15 @@
 import os
 import django
 from datetime import date
+from django.apps import apps
 
+# Configura o ambiente Django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'projetoViagem.settings')
 django.setup()
 
-from clientes.models import Cliente
-from viagens.models import Viagem
+# Recupera os modelos dinamicamente
+Cliente = apps.get_model('clientes', 'Cliente')
+Viagem = apps.get_model('viagens', 'Viagem')
 
 # Limpa os dados anteriores (opcional, use com cuidado)
 Cliente.objects.all().delete()
