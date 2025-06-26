@@ -8,12 +8,14 @@
 {% if viagens %}
   <ul class="list-group">
     {% for viagem in viagens %}
-      <li class="list-group-item">{{ viagem.destino }} - {{ viagem.data_partida }} - R$ {{ viagem.preco }}</li>
+      <li class="list-group-item">
+        {{ viagem.destino }} - {{ viagem.data_partida|date:"d/m/Y" }} - R$ {{ viagem.preco|floatformat:2 }}
+      </li>
     {% endfor %}
   </ul>
 {% else %}
   <p>Este cliente não possui viagens.</p>
 {% endif %}
 
-<a href="{% url 'lista_clientes' %}" class="btn btn-secondary mt-3">Voltar</a>
+<a href="{% url 'clientes:lista_clientes' %}" class="btn btn-secondary mt-3">Voltar para Lista de Clientes</a>
 {% endblock %}

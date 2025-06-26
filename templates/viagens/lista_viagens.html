@@ -18,15 +18,20 @@
     {% for viagem in viagens %}
     <tr>
       <td>{{ viagem.destino }}</td>
-      <td>{{ viagem.data_partida }}</td>
-      <td>R$ {{ viagem.preco }}</td>
+      <td>{{ viagem.data_partida|date:"d/m/Y" }}</td>
+      <td>R$ {{ viagem.preco|floatformat:2 }}</td>
       <td>
-        <a href="{% url 'viagem_por_clientes' viagem.id %}" class="btn btn-sm btn-info">Ver Clientes</a>
+        <a href="{% url 'viagens:viagem_por_clientes' viagem.id %}" class="btn btn-sm btn-info">Ver Clientes</a>
       </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">Nenhuma viagem cadastrada.</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 
-<a href="{% url 'nova_viagem' %}" class="btn btn-primary">Nova Viagem</a>
+<a href="{% url 'viagens:nova_viagem' %}" class="btn btn-primary">Nova Viagem</a>
+<a href="{% url 'viagens:lista_viagens' %}" class="btn btn-secondary mt-3">Voltar à Lista de Viagens</a>
 {% endblock %}

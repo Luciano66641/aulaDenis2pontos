@@ -6,5 +6,6 @@ class ViagemForm(forms.ModelForm):
         model = Viagem
         fields = ['destino', 'data_partida', 'preco', 'clientes']
         widgets = {
-            'clientes': forms.CheckboxSelectMultiple()
+            'data_partida': forms.DateInput(attrs={'type': 'date'}),
+            'clientes': forms.CheckboxSelectMultiple(),
         }

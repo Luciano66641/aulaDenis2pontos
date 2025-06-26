@@ -10,7 +10,7 @@ def cadastro_cliente(request):
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('lista_clientes')
+            return redirect('clientes:lista_clientes')  # Namespace adicionado aqui
     else:
         form = ClienteForm()
     return render(request, 'clientes/cadastro_clientes.html', {'form': form})

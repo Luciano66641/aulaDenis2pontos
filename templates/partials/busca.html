@@ -1,4 +1,5 @@
-<form method="GET" class="d-flex mb-3">
-  <input class="form-control me-2" type="search" name="busca" placeholder="Buscar por nome" value="{{ busca }}">
+<form method="GET" class="d-flex mb-3" role="search" aria-label="Busca de clientes">
+  <label for="id_busca" class="visually-hidden">Buscar por nome</label>
+  <input id="id_busca" class="form-control me-2" type="search" name="busca" placeholder="Buscar por nome" value="{{ busca }}">
   <button class="btn btn-outline-primary" type="submit">Buscar</button>
 </form>

@@ -9,7 +9,7 @@ def nova_viagem(request):
         form = ViagemForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('lista_viagens')
+            return redirect('viagens:lista_viagens')  # Namespace adicionado
     else:
         form = ViagemForm()
     return render(request, 'viagens/nova_viagem.html', {'form': form})

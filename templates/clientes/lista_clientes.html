@@ -22,15 +22,20 @@
     <tr>
       <td>{{ cliente.nome }}</td>
       <td>{{ cliente.cpf }}</td>
-      <td>{{ cliente.data_nascimento }}</td>
+      <td>{{ cliente.data_nascimento|date:"d/m/Y" }}</td>
       <td>{{ cliente.email }}</td>
       <td>
-        <a href="{% url 'cliente_viagens' cliente.id %}" class="btn btn-sm btn-info">Ver Viagens</a>
+        <a href="{% url 'clientes:cliente_viagens' cliente.id %}" class="btn btn-sm btn-info">Ver Viagens</a>
       </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5">Nenhum cliente encontrado.</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 
-<a href="{% url 'cadastro_cliente' %}" class="btn btn-primary">Novo Cliente</a>
+<a href="{% url 'clientes:cadastro_cliente' %}" class="btn btn-primary">Novo Cliente</a>
+<a href="{% url 'clientes:lista_clientes' %}" class="btn btn-secondary mt-3">Voltar para Lista de Clientes</a>
 {% endblock %}
